@@ -3,7 +3,7 @@ function ListNode(val, next) {
   this.next = (next === undefined ? null : next)
 }
 
-export function generateList(values) {
+function generateList(values) {
   if (!values.length) {
     return null;
   }
@@ -12,7 +12,7 @@ export function generateList(values) {
   generateList(values.slice(1)));
 }
 
-export function insertAtEnd(head, node) {
+function insertAtEnd(head, node) {
   let current = head;
 
   while (current) {

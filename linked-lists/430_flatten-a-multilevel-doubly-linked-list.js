@@ -15,25 +15,24 @@ function ListNode(val,prev,next,child) {
  */
 var flatten = function(list) {
   let curr = list;
-  let tmp = null;
-
+  const stack = [];
+  
   while (curr) {
     if (curr.child) {
-      tmp = curr.next
-      curr.next = flatten(curr.child);
-      curr.next.prev = curr;
-      curr.child = null;
-    }
+      if (curr.next) {
+        stack.push(curr.next);      
+      }
 
-    if (tmp && !curr.next) {
-      curr.next = tmp;
-      tmp.prev = curr;
-      tmp = null;
+      curr.next = curr.child;
+      curr.child = null;
+      curr.next.prev = curr;
+    } else if (!curr.next && stack.length) {
+      curr.next = stack.pop();
+      curr.next.prev = curr;
     }
 
     curr = curr.next;
   }
-
 
   return list;
 };

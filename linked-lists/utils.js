@@ -25,4 +25,18 @@ function insertAtEnd(head, node) {
   }
 }
 
-module.exports = { generateList, insertAtEnd, ListNode };
+function logValues(head) {
+  let current = head;
+  const values = [];
+  while (current) {
+    values.push(current.val)
+    current = current.next;
+  }
+  console.log(values);
+}
+
+function logList(head) {
+  console.dir(head, { depth: null })
+}
+
+module.exports = { generateList, insertAtEnd, ListNode, logValues, logList };

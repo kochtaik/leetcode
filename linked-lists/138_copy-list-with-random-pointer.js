@@ -1,11 +1,9 @@
 // Definition for a Node.
-function Node(val, next, random) {
+function Node(val, next = null, random = null) {
   this.val = val;
   this.next = next;
   this.random = random;
 };
-
-
 
 /**
  * @param {Node} head
@@ -18,31 +16,21 @@ var copyRandomList = function(head) {
   const hash = new Map();
 
   while (curr) {
-    let rand = null;
-    if (curr.random) {
-
-      if (hash.has(curr.random)) {
-        rand = hash.get(curr.random);
-      } else {
-        const newRand = new Node(curr.random.val);
-        rand = newRand;
-        hash.set(curr.random, newRand);
-      }
-    } 
-
-    let next = null;
-
-    if (hash.has(curr.next)) {
-      next = hash.get(curr.next);
-    }
-  
-    const newNode = new Node(curr.val, next, rand);
+    const newNode = new Node(curr.val)
     hash.set(curr, newNode);
     tail.next = newNode;
     tail = tail.next;
     curr = curr.next;
   }
+
+  curr = head;
+  tail = newHead;
   
+  while (curr) {
+    const newNode = hash.get(curr);
+    newNode.random = hash.get(curr.random);
+    curr = curr.next;
+  }
 
   return newHead.next;
 };

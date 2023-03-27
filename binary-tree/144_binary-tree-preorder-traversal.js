@@ -4,13 +4,21 @@ const { TreeNode } = require('./utils');
  * @param {TreeNode} root
  * @return {number[]}
  */
-var preorderTraversal = function(root, res = []) {
-  if (!root) return [];
+var preorderTraversal = function(root) {
+  const res = [];
+  const stack = [root];
 
-  res.push(root.val);
+  while (stack.length) {
+    const node = stack.pop();
+    res.push(node.val);
+    if (node.left) {
+      stack.push(node.left);
+    }
 
-  preorderTraversal(root.left, res)
-  preorderTraversal(root.right, res)
+    if (node.right) {
+      stack.push(node.right);
+    }
+  }
 
   return res;
 };

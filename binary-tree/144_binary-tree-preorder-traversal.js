@@ -11,12 +11,13 @@ var preorderTraversal = function(root) {
   while (stack.length) {
     const node = stack.pop();
     res.push(node.val);
-    if (node.left) {
-      stack.push(node.left);
-    }
-
+  
     if (node.right) {
       stack.push(node.right);
+    }
+  
+    if (node.left) {
+      stack.push(node.left);
     }
   }
 

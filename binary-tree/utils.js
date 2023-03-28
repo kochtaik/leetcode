@@ -34,4 +34,30 @@ function preorderTraversal(root, cb) {
   }
 }
 
-module.exports = { TreeNode, preorderTraversal }
+/**
+ * Traverse a binary tree in `Left -> Root -> Right` order iteratively
+ * 
+ * @param {TreeNode} root 
+ * @param {Function} cb 
+ * @returns 
+ */
+function inorderTraversal(root, cb) {
+  if (!root) return;
+
+  const stack = [];
+  let current = root;
+
+  while (current || stack.length) {
+    while (current) {
+      stack.push(current);
+      current = current.left;
+    }
+    current = stack.pop();
+    cb(current.val);
+    current = current.right;
+  }
+  
+  return res;
+}
+
+module.exports = { TreeNode, preorderTraversal, inorderTraversal }

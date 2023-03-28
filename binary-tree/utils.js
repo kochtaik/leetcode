@@ -9,4 +9,29 @@ function TreeNode(val, left, right) {
   this.right = (right===undefined ? null : right)
 }
 
-module.exports = { TreeNode }
+/**
+ * Traverse a binary tree in `Root -> Left -> Right` order iteratively
+ * 
+ * @param {TreeNode} root 
+ * @param {Function} cb 
+ * @returns 
+ */
+function preorderTraversal(root, cb) {
+  if (!root) return;
+  const stack = [root];
+
+  while (stack.length) {
+    const node = stack.pop();
+    cb(node.val);
+  
+    if (node.right) {
+      stack.push(node.right);
+    }
+  
+    if (node.left) {
+      stack.push(node.left);
+    }
+  }
+}
+
+module.exports = { TreeNode, preorderTraversal }

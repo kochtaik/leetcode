@@ -60,4 +60,18 @@ function inorderTraversal(root, cb) {
   return res;
 }
 
-module.exports = { TreeNode, preorderTraversal, inorderTraversal }
+/**
+ * Traverse a binary tree in `Left -> Right -> Root` order recursively
+ * 
+ * @param {TreeNode} root 
+ * @param {Function} cb
+ * @returns 
+ */
+function postorderTraversal(root, cb) {
+  if (!root) return;
+  postorderTraversal(root.left, cb);
+  postorderTraversal(root.right, cb);
+  cb(root.val);
+};
+
+module.exports = { TreeNode, preorderTraversal, inorderTraversal, postorderTraversal }

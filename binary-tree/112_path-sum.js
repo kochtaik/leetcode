@@ -13,16 +13,11 @@ const { TreeNode } = require('./utils');
  * @param {number} targetSum
  * @return {boolean}
  */
-var hasPathSum = function(root, targetSum, currentSum = 0) {
+var hasPathSum = function(root, targetSum) {
   if (!root) return false;
-  else if (!root.left && !root.right && currentSum + root.val === targetSum) return true;
+  if (!root.left && !root.right && targetSum === root.val) return true;
 
-  let leftAns = false;
-  let rightAns = false;
-  if (root.left) leftAns = hasPathSum(root.left, targetSum, currentSum + root.val);
-  if (root.right) rightAns = hasPathSum(root.right, targetSum, currentSum + root.val);
-
-  return leftAns || rightAns;
+  return hasPathSum(root.left, targetSum - root.val) || hasPathSum(root.right, targetSum - root.val);
 };
 
 const r = new TreeNode(5);

@@ -22,7 +22,7 @@ function preorderTraversal(root, cb) {
 
   while (stack.length) {
     const node = stack.pop();
-    cb(node.val);
+    cb(node);
   
     if (node.right) {
       stack.push(node.right);
@@ -53,11 +53,9 @@ function inorderTraversal(root, cb) {
       current = current.left;
     }
     current = stack.pop();
-    cb(current.val);
+    cb(current);
     current = current.right;
   }
-  
-  return res;
 }
 
 /**
@@ -71,7 +69,7 @@ function postorderTraversal(root, cb) {
   if (!root) return;
   postorderTraversal(root.left, cb);
   postorderTraversal(root.right, cb);
-  cb(root.val);
+  cb(root);
 };
 
 module.exports = { TreeNode, preorderTraversal, inorderTraversal, postorderTraversal }

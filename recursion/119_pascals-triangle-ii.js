@@ -9,16 +9,15 @@
  */
 var getRow = function(rowIndex) {
   if (rowIndex === 0) return [1];
-  else if (rowIndex === 1) return [1, 1];
 
-  const arr = getRow(rowIndex - 1)
-  const res =  arr.reduce((acc, val, i) => {
-    const next = arr[i + 1];
-    if (next) acc.push(val + next); 
-    return acc;
-  }, [])
+  const prev = getRow(rowIndex - 1);
+  const cur = [];
 
-  return [1, ...res, 1]
+  for (let i = 0; i < prev.length - 1; i++) {
+    cur.push(prev[i] + prev[i + 1]);
+  }
+
+  return [1, ...cur, 1];
 };
 
-console.log(getRow(5))
+console.log(getRow(1))

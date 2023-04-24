@@ -5,18 +5,20 @@
  */
 
 /**
- * Link:https://leetcode.com/problems/powx-n/
+ * Link: https://leetcode.com/problems/powx-n/
+ * 
  * Not solved (bad constraints)
  */
 
-var myPow = function(x, n, acc = 1) {
-  if (n === 0) return acc;
-  
-  if (n < 0) {
-    return myPow(1 / x, n * -1, acc)
+function myPow(x, y) {
+  if (y === 0) return 1;
+  if (y < 0) {
+    return 1 / myPow(x, -y)
   }
   
-  return myPow(x, n - 1, x * acc);
-};
+  const isEven = y % 2 === 0;
+  const result = isEven ? myPow(x, y / 2) : myPow(x, Math.floor(y / 2));
+  return isEven ? result * result : result * result * x;
+}
 
 console.log(myPow(2, -2))
